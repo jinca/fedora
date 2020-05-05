@@ -1,8 +1,8 @@
 #/bin/bash
 
 ### System update
-sudo dnf update 
-sudo dnf autoremove
+sudo dnf -y update
+sudo dnf -y autoremove
 
 ### VPN for Fedora
 sudo dnf -y install openvpn openfortivpn NetworkManager-fortisslvpn NetworkManager-fortisslvpn-gnome
@@ -13,19 +13,23 @@ sudo systemctl enable tlp.service
 sudo systemctl restart tlp
 
 ### USB bootable application
-sudo dnf install liveusb-creator
+sudo dnf -y install liveusb-creator
 
-### Compilers and editor
+### Editor, compilers and debugger
 sudo dnf -y install vim
 sudo dnf -y install gcc-c++ gcc-fortran
 sudo dnf -y install cmake automake libtool
 sudo dnf -y install htop make
+sudo dnf -y install gdb
 
-### Fix memory leaks
+### Development tools (parser generator, memory leak, token tracker)
 sudo dnf -y install bison valgrind valgrind-devel flex
 
-### Flatpak 
-sudo dnf install flatpak
+### Flatpak to install visual studio code and Inkscape 
+sudo dnf -y install flatpak
+sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+sudo flatpak -y install flathub com.visualstudio.code
+sudo flatpak install flathub org.inkscape.Inkscape
 
 ### Setting Bash colours
 if  grep -q "*/.bash-git-prompt/gitprompt.sh" ~/.bashrc ; then
@@ -43,6 +47,13 @@ if [ ! -d "/usr/lib64/openmpi/include" ] ; then
     sudo mkdir /usr/lib64/openmpi/include
 fi
 
-### Science programs
+### For science applications
 sudo dnf -y install eigen3-devel
+sudo dnf -y install freecad
+sudo dnf -y install libtirpc-devel
+sudo dnf -y install boost-devel gmp-devel mpfr-devel
 sudo dnf -y install micro
+
+### Generating a ssh key
+ssh-keygen -t rsa
+
