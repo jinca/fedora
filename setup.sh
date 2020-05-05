@@ -25,11 +25,12 @@ sudo dnf -y install gdb
 ### Development tools (parser generator, memory leak, token tracker)
 sudo dnf -y install bison valgrind valgrind-devel flex
 
-### Flatpak to install visual studio code and Inkscape 
+### Flatpak to install visual studio code and image
 sudo dnf -y install flatpak
 sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 sudo flatpak -y install flathub com.visualstudio.code
 sudo flatpak install flathub org.inkscape.Inkscape
+sudo flatpak install flathub org.gimp.GIMP
 
 ### Setting Bash colours
 if  grep -q "*/.bash-git-prompt/gitprompt.sh" ~/.bashrc ; then
